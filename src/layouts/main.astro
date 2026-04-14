@@ -1,5 +1,11 @@
 ---
 import "@/styles/global.css"
+
+interface Props {
+  title?: string
+}
+
+const { title = "VTT Janitor" } = Astro.props
 ---
 
 <html lang="en">
@@ -7,7 +13,29 @@ import "@/styles/global.css"
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Astro App</title>
+    <title>{title}</title>
+    <script is:inline>
+      ;(function () {
+        const k = "vtt-janitor-theme"
+        const s = localStorage.getItem(k)
+        const dark =
+          s === "dark" ||
+          (s !== "light" &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches)
+        document.documentElement.classList.toggle("dark", dark)
+        const id = "vtt-janitor-theme-toggle-icons"
+        if (!document.getElementById(id)) {
+          const el = document.createElement("style")
+          el.id = id
+          el.textContent =
+            'html.dark [data-theme-toggle-icon="moon"]{display:none!important}' +
+            'html.dark [data-theme-toggle-icon="sun"]{display:block!important}' +
+            'html:not(.dark) [data-theme-toggle-icon="sun"]{display:none!important}' +
+            'html:not(.dark) [data-theme-toggle-icon="moon"]{display:block!important}'
+          document.head.appendChild(el)
+        }
+      })()
+    </script>
   </head>
   <body>
     <slot />

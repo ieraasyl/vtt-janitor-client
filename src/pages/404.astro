@@ -1,0 +1,27 @@
+---
+import Layout from "@/layouts/main.astro"
+import { SiteHeader } from "@/components/SiteHeader"
+---
+
+<Layout title="Page not found — VTT Janitor">
+  <div class="mx-auto flex min-h-svh w-full max-w-[1600px] min-w-0 flex-col">
+    <SiteHeader client:load />
+    <main
+      class="flex flex-1 flex-col items-center justify-center gap-6 bg-background px-6 text-foreground"
+    >
+      <div class="text-center">
+        <p class="font-mono text-sm text-muted-foreground">404</p>
+        <h1 class="mt-2 font-mono text-2xl tracking-tight">Nothing here</h1>
+        <p class="mt-2 max-w-sm text-sm text-muted-foreground">
+          That path does not exist. Head back to the app to keep cleaning VTTs.
+        </p>
+      </div>
+      <a
+        href="/"
+        class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none"
+      >
+        Back to home
+      </a>
+    </main>
+  </div>
+</Layout>
